@@ -6,14 +6,14 @@ import { WinnerModal } from './components/WinnerModal'
 import { checkWinner, checkEndGame } from './logic/board'
 import { saveGame } from './logic/localStorage'
 
-function App() {
+function App () {
   const [board, setBoard] = useState(() => {
-    const boardFromStorage = localStorage.getItem('board')
+    const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
   })
   const [turn, setTurn] = useState(() => {
-    const turnFromStorage = localStorage.getItem('turn')
-    return turnFromStorage ? turnFromStorage : TURNS.X
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage || TURNS.X
   })
   const [winner, setWinner] = useState(null)
 
@@ -22,8 +22,8 @@ function App() {
     setTurn(TURNS.X)
     setWinner(null)
 
-    localStorage.removeItem('board')
-    localStorage.removeItem('turn')
+    window.localStorage.removeItem('board')
+    window.localStorage.removeItem('turn')
   }
 
   const updateBoard = (index) => {
@@ -49,10 +49,10 @@ function App() {
   }
 
   return (
-    <main className="board">
+    <main className='board'>
       <h1>Ta te ti</h1>
       <button onClick={resetGame}>Reset</button>
-      <section className="game">
+      <section className='game'>
         {
           board.map((cell, index) => (
             <Square
@@ -66,7 +66,7 @@ function App() {
         }
       </section>
 
-      <section className="turn">
+      <section className='turn'>
         <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
         <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
       </section>
