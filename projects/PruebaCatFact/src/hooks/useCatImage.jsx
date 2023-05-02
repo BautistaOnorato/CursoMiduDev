@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
@@ -6,7 +6,7 @@ export const useCatImage = ({ fact }) => {
   const [image, setImage] = useState()
 
   useEffect(() => {
-    if(!fact) return
+    if (!fact) return
 
     const firstWord = fact.split(' ')[0]
 

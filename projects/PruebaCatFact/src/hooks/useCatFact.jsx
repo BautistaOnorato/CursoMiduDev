@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getRandomFact } from '../services/facts'
 
 export const useCatFact = () => {
@@ -8,7 +8,7 @@ export const useCatFact = () => {
     getRandomFact().then(newFact => setFact(newFact))
   }
 
-  useState(refreshFact, []);
+  useEffect(refreshFact, [])
 
   return { fact, refreshFact }
 }
